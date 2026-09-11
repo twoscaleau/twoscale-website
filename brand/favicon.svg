@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100" role="img" aria-label="Two Scale">
+  <title>Two Scale</title>
+  <!-- Measurement mark: two rules at a 1:2 ratio. Use only where the wordmark will not fit. -->
+  <rect width="100" height="100" rx="0" fill="#111111"/>
+  <line x1="22" y1="40" x2="78" y2="40" stroke="#FF5A36" stroke-width="8"/>
+  <line x1="22" y1="62" x2="50" y2="62" stroke="#F4F3EF" stroke-width="8"/>
+</svg>

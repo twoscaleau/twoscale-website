@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Two Scale — Systems that scale</title>
+<meta name="description" content="Two Scale. Design, systems and consulting. Brisbane, Queensland. Coming soon.">
+<link rel="icon" href="brand/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="fonts/space-grotesk-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
+<meta property="og:title" content="Two Scale — Systems that scale">
+<meta property="og:description" content="Design, systems and consulting. Brisbane, Queensland. Coming soon.">
+<meta property="og:type" content="website">
+
+<style>
+/* ==========================================================================
+   TWO SCALE — coming soon.
+   Scale Black ground: Signal Orange measures 6.09:1 here and passes WCAG AA,
+   where on Paper it would be 2.79:1 and fail.
+   ========================================================================== */
+
+@font-face { font-family:'Space Grotesk'; src:url('fonts/space-grotesk-latin-400-normal.woff2') format('woff2'); font-weight:400; font-display:swap; }
+@font-face { font-family:'Space Grotesk'; src:url('fonts/space-grotesk-latin-500-normal.woff2') format('woff2'); font-weight:500; font-display:swap; }
+@font-face { font-family:'Space Grotesk'; src:url('fonts/space-grotesk-latin-700-normal.woff2') format('woff2'); font-weight:700; font-display:swap; }
+
+:root {
+  --black:#111111;
+  --paper:#F4F3EF;
+  --concrete:#D8D6D0;
+  --orange:#FF5A36;
+  --mist:#8A8D90;            /* supporting text on Scale Black — 5.66:1 */
+  --edge: clamp(1.5rem, 5vw, 4rem);
+  --font:'Space Grotesk', Arial, Helvetica, sans-serif;
+}
+
+*,*::before,*::after { box-sizing:border-box; }
+
+html, body { height:100%; }
+
+body {
+  margin:0;
+  background:var(--black);
+  color:var(--paper);
+  font-family:var(--font);
+  font-size:1.0625rem;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+  overflow:hidden;
+}
+
+/* The measured ground sits behind everything and never takes a click. */
+#field { position:fixed; inset:0; z-index:0; pointer-events:none; }
+
+.sheet {
+  position:relative; z-index:1;
+  min-height:100%;
+  display:flex; flex-direction:column;
+  padding:var(--edge);
+  gap:2rem;
+}
+
+.meta {
+  font-size:0.6875rem; font-weight:500;
+  letter-spacing:0.16em; text-transform:uppercase;
+  color:var(--mist);
+}
+
+/* --- Masthead ---------------------------------------------------------- */
+.top { display:flex; align-items:center; justify-content:space-between; gap:1.5rem; flex-wrap:wrap; }
+.top img { display:block; width:clamp(150px,22vw,190px); height:auto; }
+
+/* --- Centre ------------------------------------------------------------ */
+.middle { flex:1; display:flex; flex-direction:column; justify-content:center; max-width:44rem; }
+
+h1 {
+  margin:0;
+  font-size:clamp(2.75rem, 9vw, 6rem);
+  font-weight:500;
+  line-height:0.95;
+  letter-spacing:-0.035em;
+}
+
+/* The measurement line, drawn out once on load. */
+.rule { margin:clamp(1.5rem,4vw,2.5rem) 0; height:16px; }
+.rule svg { display:block; width:100%; height:16px; overflow:visible; }
+.rule g { transform-origin:left center; animation:extend 1.2s cubic-bezier(.2,.8,.2,1) both; }
+@keyframes extend { from { transform:scaleX(0); } to { transform:scaleX(1); } }
+
+.status { font-size:clamp(1.125rem,2.6vw,1.5rem); font-weight:500; letter-spacing:-0.015em; margin:0; }
+.status span { color:var(--orange); }
+
+.reach { margin:2.25rem 0 0; }
+.reach a {
+  font-size:clamp(1.25rem,3.6vw,2rem);
+  font-weight:500; letter-spacing:-0.02em;
+  color:var(--orange);
+  text-decoration:underline;
+  text-decoration-thickness:2px;
+  text-underline-offset:0.2em;
+}
+.reach a:hover { text-decoration-thickness:3px; }
+
+/* --- Title block ------------------------------------------------------- */
+.bottom {
+  border-top:1px solid #2E2E2E;
+  padding-top:1.125rem;
+  display:flex; flex-wrap:wrap; gap:0.5rem 2.5rem; justify-content:space-between;
+}
+.readout { font-variant-numeric:tabular-nums; }
+
+:focus-visible { outline:2px solid var(--orange); outline-offset:4px; }
+
+@media (max-width:34rem) {
+  body { overflow:auto; }
+  .sheet { gap:2.5rem; }
+}
+
+@media (prefers-reduced-motion:reduce) {
+  .rule g { animation:none; }
+}
+</style>
+</head>
+<body>
+
+<canvas id="field" aria-hidden="true"></canvas>
+
+<div class="sheet">
+
+  <header class="top">
+    <img src="brand/twoscale-wordmark-reversed.svg" alt="Two Scale">
+    <p class="meta">Brisbane, Queensland</p>
+  </header>
+
+  <main class="middle">
+    <h1>Systems<br>that scale.</h1>
+
+    <div class="rule" aria-hidden="true">
+      <svg viewBox="0 0 1000 16" preserveAspectRatio="none" focusable="false">
+        <g>
+          <line x1="1" y1="8" x2="999" y2="8" stroke="#FF5A36" stroke-width="3" vector-effect="non-scaling-stroke"/>
+          <line x1="1" y1="1" x2="1" y2="15" stroke="#FF5A36" stroke-width="3" vector-effect="non-scaling-stroke"/>
+          <line x1="999" y1="1" x2="999" y2="15" stroke="#FF5A36" stroke-width="3" vector-effect="non-scaling-stroke"/>
+        </g>
+      </svg>
+    </div>
+
+    <p class="status">Coming soon. <span>Watch this space.</span></p>
+
+    <p class="reach"><a href="mailto:hello@twoscale.au">hello@twoscale.au</a></p>
+  </main>
+
+  <footer class="bottom">
+    <p class="meta">Design &middot; Systems &middot; Consulting</p>
+    <p class="meta readout" id="readout">&mdash;</p>
+  </footer>
+
+</div>
+
+<script>
+/* --------------------------------------------------------------------------
+   The measured ground.
+
+   A drawing grid with a dimension crosshair that follows the pointer and
+   reads out its position. With no pointer — touch, or an idle desktop — the
+   crosshair drifts slowly on its own so the page is never inert.
+   Honours prefers-reduced-motion by holding still.
+   -------------------------------------------------------------------------- */
+(function () {
+  var canvas = document.getElementById('field');
+  var ctx = canvas.getContext('2d');
+  var readout = document.getElementById('readout');
+  var still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  var GRID = 48;
+  var w = 0, h = 0;
+  var target = { x: 0, y: 0 };   // where the crosshair is heading
+  var pos = { x: 0, y: 0 };      // where it currently is
+  var idleSince = performance.now();
+  var pointer = false;
+
+  function resize() {
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    w = window.innerWidth; h = window.innerHeight;
+    canvas.width = w * dpr; canvas.height = h * dpr;
+    canvas.style.width = w + 'px'; canvas.style.height = h + 'px';
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    if (!pointer) { target.x = w * 0.62; target.y = h * 0.55; pos.x = target.x; pos.y = target.y; }
+  }
+
+  function grid() {
+    ctx.strokeStyle = '#232323';
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    for (var x = GRID; x < w; x += GRID) { ctx.moveTo(x + 0.5, 0); ctx.lineTo(x + 0.5, h); }
+    for (var y = GRID; y < h; y += GRID) { ctx.moveTo(0, y + 0.5); ctx.lineTo(w, y + 0.5); }
+    ctx.stroke();
+  }
+
+  function crosshair(x, y) {
+    x = Math.round(x); y = Math.round(y);
+
+    // Dimension lines, full bleed.
+    ctx.strokeStyle = 'rgba(255,90,54,0.55)';
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(0, y + 0.5); ctx.lineTo(w, y + 0.5);
+    ctx.moveTo(x + 0.5, 0); ctx.lineTo(x + 0.5, h);
+    ctx.stroke();
+
+    // End ticks, the way a dimension line terminates on a drawing.
+    ctx.strokeStyle = '#FF5A36';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(0.5, y - 7); ctx.lineTo(0.5, y + 7);
+    ctx.moveTo(w - 0.5, y - 7); ctx.lineTo(w - 0.5, y + 7);
+    ctx.moveTo(x - 7, 0.5); ctx.lineTo(x + 7, 0.5);
+    ctx.moveTo(x - 7, h - 0.5); ctx.lineTo(x + 7, h - 0.5);
+    ctx.stroke();
+
+    // The node itself.
+    ctx.fillStyle = '#FF5A36';
+    ctx.fillRect(x - 3, y - 3, 6, 6);
+
+    readout.textContent = 'X ' + x + ' · Y ' + y;
+  }
+
+  function frame(now) {
+    ctx.clearRect(0, 0, w, h);
+    grid();
+
+    if (!still) {
+      // After three idle seconds the crosshair takes itself for a walk.
+      if (now - idleSince > 3000) {
+        var t = now / 1000;
+        target.x = w * (0.5 + 0.34 * Math.sin(t * 0.21));
+        target.y = h * (0.5 + 0.30 * Math.sin(t * 0.13 + 1.1));
+      }
+      pos.x += (target.x - pos.x) * 0.07;   // trail, rather than snap
+      pos.y += (target.y - pos.y) * 0.07;
+    } else {
+      pos.x = target.x; pos.y = target.y;
+    }
+
+    crosshair(pos.x, pos.y);
+    requestAnimationFrame(frame);
+  }
+
+  function track(x, y) { pointer = true; target.x = x; target.y = y; idleSince = performance.now(); }
+
+  window.addEventListener('resize', resize);
+  window.addEventListener('pointermove', function (e) { track(e.clientX, e.clientY); }, { passive: true });
+  window.addEventListener('pointerdown', function (e) { track(e.clientX, e.clientY); }, { passive: true });
+
+  resize();
+  requestAnimationFrame(frame);
+})();
+</script>
+
+</body>
+</html>
